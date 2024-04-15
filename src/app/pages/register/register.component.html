@@ -4,27 +4,52 @@
             <div class="text-center my-5">
                 <img src="../../../assets/angular.svg" alt="logo" width="100">
             </div>
-            <div class="card shadow-lg">
+            <div class="card shadow-lg mb-5">
                 <div class="card-body p-5">
-                    <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                    <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                    <h1 class="fs-4 card-title fw-bold mb-4 text-center">Register</h1>
+                    <form [formGroup]="registerForm">
+                        <p class="text-danger">{{registerError}}</p>
                         <div class="mb-3">
                             <label class="mb-2 text-muted" for="name">Username</label>
-                            <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+                            <input id="name" type="text" class="form-control" formControlName="username" name="name" value="" required autofocus>
+                            @if (username.invalid && (username.dirty || username.touched)) {
+                            <div class="mt-1 text-danger">
+                                @if (username.errors?.['required']) {
+                                <div>Email is required</div>
+                                }
+                            </div>
+                            }
                         </div>
 
                         <div class="mb-3">
-                            <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                            <input id="email" type="email" class="form-control" name="email" value="" required>
+                            <label class="mb-2 text-muted" for="email">Email</label>
+                            <input id="email" type="email" class="form-control" name="email" formControlName="email" required>
+                            @if (email.invalid && (email.dirty || email.touched)) {
+                            <div class="mt-1 text-danger">
+                                @if (email.errors?.['required']) {
+                                <div>Email is required</div>
+                                }
+                                @if (email.errors?.['email']) {
+                                <div>Email is invalid</div>
+                                }
+                            </div>
+                            }
                         </div>
 
                         <div class="mb-3">
                             <label class="mb-2 text-muted" for="password">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" required>
+                            <input id="password" type="password" class="form-control" name="password" formControlName="password" required>
+                            @if (password.invalid && (password.dirty || password.touched)) {
+                            <div class="mt-1 text-danger">
+                                @if (password.errors?.['required']) {
+                                    <div>Password is required</div>
+                                }
+                            </div>
+                            }
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="button" (click)="register()" class="btn btn-primary">Register</button>
                         </div>
                     </form>
                 </div>
