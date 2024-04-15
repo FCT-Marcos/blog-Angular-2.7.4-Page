@@ -1,23 +1,18 @@
 <header class="container">
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg bg-terniary">
     <div class="container-fluid">
       <a class="navbar-brand mb-0 h1" routerLink="home">{{ title }}</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <!-- <a routerLink="/home" routerLinkActive="active">Posts</a> -->
-          </li>
-        </ul>
-        <div class="d-flex gap-1">
-          <a class="btn btn-outline-dark" routerLink="/login" >Login</a>
-          <a class="btn btn-dark" routerLink="/register">Register</a>
+        <div class="d-flex gap-2">
+          @if (isUserLogged) {
+            <i class="bi bi-person-circle"> User info</i>
+            <button class="btn btn-primary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#newPanel"
+            aria-controls="newPanel"><i class="bi bi-plus-lg"></i> New Post</button>
+            <button class="btn btn-danger" (click)="logout()">Logout</button>
+          } @else {
+            <a class="btn btn-outline-dark" routerLink="/login">Login</a>
+            <a class="btn btn-dark" routerLink="/register">Register</a>
+          }
         </div>
-      </div>
     </div>
   </nav>
 </header>
