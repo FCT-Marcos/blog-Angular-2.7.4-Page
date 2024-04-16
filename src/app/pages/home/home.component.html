@@ -1,70 +1,81 @@
 <app-header />
 
 <main class="container">
-    <h1 class="my-4 align-center">Publicaciones</h1>
+  <h1 class="my-4 align-center">Posts</h1>
 
-    <div class="d-flex justify-content-end py-3">
-      <button class="btn btn-primary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#newPanel" aria-controls="newPanel"><i class="bi bi-plus-lg"></i> Nueva Publicación</button>
+  <div id="toastContainer" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1000"
+    aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Posts -->
+
+  <div class="row row-cols-1 row-cols-md-1 g-4">
+    <div class="card">
+      <div class="card-header text-bg-dark">
+        <h5 class="card-title">Test</h5>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">Test Body</p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#updatePanel"
+            aria-controls="updatePanel"><i class="bi bi-pencil-square"></i>
+            Modificar</button>
+          <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i> Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side Panels -->
+
+  <!-- Update panel -->
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="updatePanel" aria-labelledby="updatePanelLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="updatePanelLabel">Actualizar Publicación</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <div class="mb-3">
+        <label for="updateTitle" class="form-label">Título</label>
+        <input type="text" class="form-control" id="updateTitle" placeholder="Título del post">
+      </div>
+
+      <div class="mb-3">
+        <label for="updateContent" class="form-label">Contenido</label>
+        <textarea class="form-control" id="updateContent" rows="3" placeholder="Contenido del post"></textarea>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button type="button" id="updateBtn" class="btn btn-primary" onclick="updatePost()">Guardar Cambios</button>
+      </div>
+
     </div>
 
-    <div id="toastContainer" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1000" aria-live="polite" aria-atomic="true"></div>
+  </div>
 
-    <!-- Posts -->
+  <!-- New Post panel -->
 
-    <div class="row row-cols-1 row-cols-md-1 g-4">
-
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="newPanel" aria-labelledby="newPanelLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="newPanelLabel">Nueva Publicación</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body">
 
-    <!-- Side Panels -->
+      <div class="mb-3">
+        <label for="newTitle" class="form-label">Titulo</label>
+        <input type="text" class="form-control" id="newTitle">
+      </div>
+      <div class="mb-3">
+        <label for="newContent" class="form-label">Contenido</label>
+        <textarea class="form-control" id="newContent" rows="3"></textarea>
+      </div>
 
-    <!-- Update panel -->
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="updatePanel" aria-labelledby="updatePanelLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="updatePanelLabel">Actualizar Publicación</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-
-          <div class="mb-3">
-            <label for="updateTitle" class="form-label">Título</label>
-            <input type="text" class="form-control" id="updateTitle" placeholder="Título del post">
-          </div>
-
-          <div class="mb-3">
-            <label for="updateContent" class="form-label">Contenido</label>
-            <textarea class="form-control" id="updateContent" rows="3" placeholder="Contenido del post"></textarea>
-          </div>
-
-          <div class="d-grid gap-2">
-            <button type="button" id="updateBtn" class="btn btn-primary" onclick="updatePost()">Guardar Cambios</button>
-          </div>
-
-        </div>
-
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" onclick="createPost()">Crear</button>
+      </div>
     </div>
-
-    <!-- New Post panel -->
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="newPanel" aria-labelledby="newPanelLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="newPanelLabel">Nueva Publicación</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-
-            <div class="mb-3">
-              <label for="newTitle" class="form-label">Titulo</label>
-              <input type="text" class="form-control" id="newTitle">
-            </div>
-            <div class="mb-3">
-              <label for="newContent" class="form-label">Contenido</label>
-              <textarea class="form-control" id="newContent" rows="3"></textarea>
-            </div>
-
-            <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="submit" onclick="createPost()">Crear</button>
-            </div>
-        </div>
-    </div>
+  </div>
 </main>
