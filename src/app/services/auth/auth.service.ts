@@ -14,11 +14,11 @@ const httpOptions = {
 export class AuthService {
 
   isUserLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  userToken: BehaviorSubject<String> = new BehaviorSubject<String>("");
+  userToken: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
   constructor(private http: HttpClient, private router:Router) {
     this.isUserLogged = new BehaviorSubject<boolean>(sessionStorage.getItem("access_token") != null);
-    this.userToken = new BehaviorSubject<String>(sessionStorage.getItem("access_token") || "");
+    this.userToken = new BehaviorSubject<string>(sessionStorage.getItem("access_token") || "");
   }
 
   login(credentials:LoginRequest): Observable<any> {
